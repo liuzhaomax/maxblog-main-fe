@@ -1,2 +1,2 @@
-# go-maxms-react
-go-maxms-react
+# maxblog-main-fe
+maxblog-main-fe
