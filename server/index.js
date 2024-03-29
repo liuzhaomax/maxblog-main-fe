@@ -32,7 +32,7 @@ router.get("/", (req, res, next) => {
 
 app.use("/", router)
 
-app.listen(9600, (req, res) => {
-    console.log("Server fe的be running on 9600.")
+app.listen(9601, (req, res) => {
+    console.log("Server fe的be running on 9601.")
     debug()
 })
