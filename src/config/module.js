@@ -9,7 +9,7 @@ export const HOME = {
 export const ARTICLE = {
     NAME: "文章",
     KEY: "ARTICLE",
-    PATH: "article",
+    PATH: "article/list",
     FULL_PATH: "/article/list",
     FILE_PATH: "page/article/Article"
 }
@@ -17,7 +17,7 @@ export const ARTICLE = {
 export const DEMO = {
     NAME: "样例",
     KEY: "DEMO",
-    PATH: "demo",
+    PATH: "demo/list",
     FULL_PATH: "/demo/list",
     FILE_PATH: "page/demo/Demo"
 }
@@ -25,7 +25,7 @@ export const DEMO = {
 export const PROJECT = {
     NAME: "项目",
     KEY: "PROJECT",
-    PATH: "project",
+    PATH: "project/list",
     FULL_PATH: "/project/list",
     FILE_PATH: "page/project/Project"
 }
