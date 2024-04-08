@@ -1,23 +1,25 @@
 #ANNOUNCEMENT {
+    height: 506px;
+    margin-left: 30px;
+
     display:flex;
     flex-direction:column;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .announcement-title {
     font-size: 20px;
     color: #338E6C;
     padding: 10px 0;
-    width: 100px;
     font-weight: bold;
 }
 
 .announcement-border {
     border: 5px dashed #338E6C;
-    width: 285px;
-    height: 213px;
+    width: 250px;
+    height: 150px;
     margin-top: 10px;
     padding: 10px;
     display: flex;
@@ -43,6 +45,7 @@
 
 .announcement-data-title {
     width: 32px;
+    font-weight: bold;
 }
 
 .announcement-connect-picture {

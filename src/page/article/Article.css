@@ -3,4 +3,35 @@
     background-color: white;
     color: #333;
     padding: 50px 0 30px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.article-container {
+    margin: 0 150px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.article-north {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.article-south {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
 }

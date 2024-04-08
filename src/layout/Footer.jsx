@@ -2,14 +2,10 @@ import React, { useEffect } from "react"
 import { createRoot } from "react-dom/client"
 import "./Footer.css"
 import logo from "../asset/logo_bottom_color.png"
-import { useNavigate } from "react-router-dom"
 import { CONTRIBUTORS, GITHUB } from "../config/constant"
-import { HOME } from "../config/module"
 import { Tooltip } from "antd"
 
 function Footer() {
-    const navigate = useNavigate()
-
     useEffect(() => {
         generateContributors()
     },[])
@@ -29,26 +25,18 @@ function Footer() {
         root.render(elems)
     }
 
-    const jumpToAnchor = module => {
-        navigate(module.FULL_PATH)
-    }
-
     return (
         <div className="Footer">
             <div id="footer-container">
                 <div id="footer-upper-wrap">
                     <img id="footer-logo" className="footer-upper-wrap" src={logo} alt={"logo"}/>
                     <div className="footer-upper-nav">
-                        <h3 onClick={jumpToAnchor.bind(this, HOME )}>推荐作品</h3>
-                        <p onClick={jumpToAnchor.bind(this, HOME)}>锚点</p>
+                        <h3>相关资源</h3>
+                        <a href="https://www.baidu.com" target="_blank" rel="noreferrer">百度</a>
                     </div>
                     <div className="footer-upper-nav">
                         <h3>贡献者</h3>
                         <div id="CONTRIBUTORS"></div>
-                    </div>
-                    <div className="footer-upper-nav">
-                        <h3>相关资源</h3>
-                        <a href="https://www.baidu.com" target="_blank" rel="noreferrer">百度</a>
                     </div>
                     <div className="footer-upper-nav">
                         <h3>管理入口</h3>
