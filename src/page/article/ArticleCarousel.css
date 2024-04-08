@@ -1,5 +1,11 @@
-.article-carousel {
+.article-carousel-container {
+    margin-top: 10px;
     width: 900px;
     height: 506px;
-    background-color: #535353;
+    background-color: #364d79;
+}
+
+.article-carousel-elem {
+    width: 900px;
+    height: 506px;
 }

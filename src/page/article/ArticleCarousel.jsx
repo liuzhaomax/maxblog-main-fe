@@ -13,10 +13,10 @@ import { Carousel } from "antd"
 function ArticleCarousel() {
 
     return (
-        <div className="article-carousel">
+        <div className="article-carousel-container">
             <Carousel autoplay>
-                <div>
-                    <h3>1</h3>
+                <div className="article-carousel-elem">
+                    1
                 </div>
                 <div>
                     <h3>2</h3>
