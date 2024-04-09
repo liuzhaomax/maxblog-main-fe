@@ -1,0 +1,8 @@
+.article-list-container {
+    width: 900px;
+    font-size: 16px;
+}
+
+.article-list-container img:hover {
+    cursor: pointer;
+}

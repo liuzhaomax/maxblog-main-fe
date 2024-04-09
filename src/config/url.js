@@ -1,5 +1,11 @@
 export const URL = {
     INNER: {
+        Static: "/www",
+        Project: "/maxblog",
+        ArticleList: "/article/list",
+        ArticleTags: "/article/tags",
+        ArticleArticle: "/article/article",
+        ArticleTag: "/article/tag",
         Demo: "/demo",
     },
     OUTER: {
