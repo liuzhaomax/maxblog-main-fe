@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import "./Article.css"
 import { ARTICLE } from "../../config/module"
 import Announcement from "../announcement/Announcement"
@@ -9,6 +9,8 @@ import { Input, Tag } from "antd"
 const { Search } = Input
 
 function Article() {
+    const childRef = useRef()
+
     const onSearch = (value, _e, info) => console.log(info?.source, value)
 
     const [selectedTags, setSelectedTags] = React.useState([])
@@ -18,7 +20,8 @@ function Article() {
             : selectedTags.filter((t) => t !== tag)
         setSelectedTags(nextSelectedTags)
         console.log("You are interested in: ", nextSelectedTags)
-        // TODO 发送请求 更新文章列表
+        // 发送请求 更新文章列表，子组件中的函数
+        childRef.current.reloadArticleListBySelectedTags(nextSelectedTags)
     }
 
     const [articleListRes, setArticleListRes] = useState([])
@@ -39,7 +42,7 @@ function Article() {
                     <Announcement moduleName={ARTICLE.KEY}/>
                 </div>
                 <div className="article-south">
-                    <ArticleList setArticleListRes={setArticleListRes}/>
+                    <ArticleList setArticleListRes={setArticleListRes} ref={childRef}/>
                     <div className="article-tool">
                         <Search placeholder="搜索标题和正文" onSearch={onSearch} enterButton />
                         <h3>#标签</h3>

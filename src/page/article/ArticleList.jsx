@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react"
 import "./ArticleList.css"
 import { List, Space } from "antd"
 import { LikeOutlined, EyeOutlined, ClockCircleOutlined } from "@ant-design/icons"
@@ -13,7 +13,7 @@ const IconText = ({ icon, text }) => (
     </Space>
 )
 
-function ArticleList(props) {
+const ArticleList = forwardRef((props, ref) => {
     const [pageNo, setPageNo] = useState(1)
     const [pageSize, setPageSize] = useState(5)
     const [data, setData] = useState([]) // list data
@@ -62,6 +62,25 @@ function ArticleList(props) {
         })
         setData(data)
     }
+    const reloadArticleListBySelectedTags = (nextSelectedTags) => {
+        let params = {
+            pageNo: pageNo,
+            pageSize: pageSize,
+            tagName: nextSelectedTags.join(","),
+        }
+        getArticleList(params)
+            .then(res => {
+                props.setArticleListRes(res.data.data)
+                mapArticleListRes2Data(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    // 父组件调用子组件函数
+    useImperativeHandle(ref, () => ({
+        reloadArticleListBySelectedTags
+    }))
 
     return (
         <div className="article-list-container">
@@ -114,6 +133,8 @@ function ArticleList(props) {
             />
         </div>
     )
-}
+})
+
+ArticleList.displayName = "ArticleList"
 
 export default ArticleList
