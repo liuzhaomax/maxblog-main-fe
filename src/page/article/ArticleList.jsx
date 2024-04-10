@@ -26,6 +26,7 @@ const ArticleList = forwardRef((props, ref) => {
             pageNo: pageNo,
             pageSize: pageSize,
             tagName: "",
+            search: "",
         }
         getArticleList(params)
             .then(res => {
@@ -62,12 +63,14 @@ const ArticleList = forwardRef((props, ref) => {
         })
         setData(data)
     }
-    const reloadArticleListBySelectedTags = (nextSelectedTags) => {
+    const reloadArticleList = (selectedTags, searchingStr) => {
         let params = {
             pageNo: pageNo,
             pageSize: pageSize,
-            tagName: nextSelectedTags.join(","),
+            tagName: selectedTags.join(",") ? selectedTags.join(",") : "",
+            search: searchingStr ? searchingStr : "",
         }
+        console.log(params)
         getArticleList(params)
             .then(res => {
                 props.setArticleListRes(res.data.data)
@@ -79,7 +82,7 @@ const ArticleList = forwardRef((props, ref) => {
     }
     // 父组件调用子组件函数
     useImperativeHandle(ref, () => ({
-        reloadArticleListBySelectedTags
+        reloadArticleList
     }))
 
     return (
@@ -124,7 +127,7 @@ const ArticleList = forwardRef((props, ref) => {
                         }
                     >
                         <List.Item.Meta
-                            title={<a href={item.href}>{item.title}</a>}
+                            title={<a href={item.href} target="_blank" rel="noreferrer">{item.title}</a>}
                             description={item.tags}
                         />
                         {item.preview}

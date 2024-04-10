@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import "./Article.css"
 import { ARTICLE } from "../../config/module"
 import Announcement from "../announcement/Announcement"
@@ -13,7 +13,14 @@ function Article() {
     const childRef = useRef()
     const debouncedHandleTagChangeRef = useRef()
 
-    const onSearch = (value, _e, info) => console.log(info?.source, value)
+    const [searchingStr, setSearchingStr] = useState("")
+    const [searchLoading, setSearchLoading] = useState(false)
+    const onSearch = async (value) => {
+        setSearchLoading(true)
+        setSearchingStr(value)
+        await childRef.current.reloadArticleList(selectedTags, value)
+        setSearchLoading(false)
+    }
 
     const [selectedTags, setSelectedTags] = React.useState([])
     const handleTagChange = (tag, checked) => {
@@ -22,12 +29,13 @@ function Article() {
             : selectedTags.filter((t) => t !== tag)
         setSelectedTags(nextSelectedTags)
         // 发送请求 更新文章列表，子组件中的函数
-        childRef.current.reloadArticleListBySelectedTags(nextSelectedTags)
+        childRef.current.reloadArticleList(nextSelectedTags, searchingStr)
     }
-    // useDebounce不跟随dom刷新而重置，不会初始化canCall，先触发，后防抖（先触发，后n毫秒之内不能再触发）
-    if (!debouncedHandleTagChangeRef.current) {
+    useEffect(() => {
+        // useDebounce不跟随dom刷新而重置，不会初始化canCall，先触发，后防抖（先触发，后n毫秒之内不能再触发）
         debouncedHandleTagChangeRef.current = useDebounce(handleTagChange, 500)
-    }
+        // 监听函数，是为了更新参数
+    }, [handleTagChange])
 
     const [articleListRes, setArticleListRes] = useState([])
 
@@ -49,7 +57,7 @@ function Article() {
                 <div className="article-south">
                     <ArticleList setArticleListRes={setArticleListRes} ref={childRef}/>
                     <div className="article-tool">
-                        <Search placeholder="搜索标题和正文" onSearch={onSearch} enterButton />
+                        <Search placeholder="搜索标题和正文" onSearch={onSearch} enterButton loading={searchLoading} />
                         <h3>#标签</h3>
                         <div className="article-tag-wrap">
                             {

@@ -13,7 +13,6 @@
 export const debounce = (func, wait) => {
     let timer = null
     let canCall = true
-
     return (...args) => {
         if (canCall) {
             canCall = false
