@@ -30,6 +30,7 @@ export default (
             <Route path="project" element={<Navigate to={PROJECT.FULL_PATH}/>}/>
             {/*路由*/}
             <Route path={ARTICLE.PATH} element={lazyLoad(ARTICLE.FILE_PATH)}/>
+            <Route path={ARTICLE.CHILDREN.ARTICLE.PATH} element={lazyLoad(ARTICLE.CHILDREN.ARTICLE.FILE_PATH)}/>
             <Route path={DEMO.PATH} element={lazyLoad(DEMO.FILE_PATH)}/>
             <Route path={PROJECT.PATH} element={lazyLoad(PROJECT.FILE_PATH)}/>
         </Route>

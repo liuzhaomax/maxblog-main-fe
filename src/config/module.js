@@ -3,7 +3,7 @@ export const HOME = {
     KEY: "HOME",
     PATH: "home",
     FULL_PATH: "/home",
-    FILE_PATH: "page/home/Home"
+    FILE_PATH: "page/home/Home",
 }
 
 export const ARTICLE = {
@@ -11,7 +11,16 @@ export const ARTICLE = {
     KEY: "ARTICLE",
     PATH: "article/list",
     FULL_PATH: "/article/list",
-    FILE_PATH: "page/article/Article"
+    FILE_PATH: "page/article/Article",
+    CHILDREN: {
+        ARTICLE: {
+            NAME: "文章文章",
+            KEY: "ARTICLEARTICLE",
+            PATH: "article/article",
+            FULL_PATH: "/article/article",
+            FILE_PATH: "page/article/ArticleArticle",
+        },
+    },
 }
 
 export const DEMO = {
@@ -19,7 +28,7 @@ export const DEMO = {
     KEY: "DEMO",
     PATH: "demo/list",
     FULL_PATH: "/demo/list",
-    FILE_PATH: "page/demo/Demo"
+    FILE_PATH: "page/demo/Demo",
 }
 
 export const PROJECT = {
@@ -27,7 +36,7 @@ export const PROJECT = {
     KEY: "PROJECT",
     PATH: "project/list",
     FULL_PATH: "/project/list",
-    FILE_PATH: "page/project/Project"
+    FILE_PATH: "page/project/Project",
 }
 
 export const MODULE = {
