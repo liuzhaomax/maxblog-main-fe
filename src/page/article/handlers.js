@@ -13,6 +13,6 @@ export const getArticleTags = () => {
     return axios.get(URL.INNER.ArticleTags)
 }
 
-export const getArticleArticle = () => {
-    return axios.get(URL.INNER.ArticleArticle)
+export const getArticleArticle = (id) => {
+    return axios.get(URL.INNER.ArticleArticle + `?articleId=${id}`)
 }

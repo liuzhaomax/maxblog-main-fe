@@ -1,0 +1,62 @@
+#ARTICLEARTICLE {
+    position: relative;
+    background-color: white;
+    color: #333;
+    padding: 50px 0 30px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.article-article-container {
+    margin: 0 150px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.article-article-west {
+    width: 900px;
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.article-article-west div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.article-article-meta {
+    width: 100%;
+    padding-left: 10px;
+    background-color: #EEE;
+    border-radius: 6px;
+}
+
+.article-article-meta span {
+    margin-right: 5px;
+}
+
+.article-article-meta .article-article-meta-item {
+    margin-right: 30px;
+}
+
+.article-article-content {
+    margin: 25px 0;
+}
+
+.article-article-reference-title, .article-article-link-title {
+    font-weight: bold;
+}
+
+.article-article-reference-content, .article-article-link-content {
+    margin-left: 30px;
+}

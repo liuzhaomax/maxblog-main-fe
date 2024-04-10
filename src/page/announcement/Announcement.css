@@ -16,6 +16,11 @@
     font-weight: bold;
 }
 
+.announcement-title p {
+    font-weight: normal;
+    color: #333;
+}
+
 .announcement-border {
     border: 5px dashed #338E6C;
     width: 250px;
