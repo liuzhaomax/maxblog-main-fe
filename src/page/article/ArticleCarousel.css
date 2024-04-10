@@ -9,3 +9,7 @@
     width: 900px;
     height: 506px;
 }
+
+.article-carousel-elem:hover {
+    cursor: pointer;
+}
