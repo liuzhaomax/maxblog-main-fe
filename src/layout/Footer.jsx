@@ -33,7 +33,9 @@ function Footer() {
                     <img id="footer-logo" className="footer-upper-wrap" src={logo} alt={"logo"}/>
                     <div className="footer-upper-nav">
                         <h3>相关资源</h3>
-                        <a href="https://www.baidu.com" target="_blank" rel="noreferrer">百度</a>
+                        <a href="https://github.com/liuzhaomax/go-maxms" target="_blank" rel="noreferrer">后端脚手架</a>
+                        <a href="https://github.com/liuzhaomax/go-maxms-react" target="_blank" rel="noreferrer">前端脚手架</a>
+                        <a href="https://space.bilibili.com/18359348?spm_id_from=333.1007.0.0" target="_blank" rel="noreferrer">开发教程</a>
                     </div>
                     <div className="footer-upper-nav">
                         <h3>贡献者</h3>
@@ -41,7 +43,7 @@ function Footer() {
                     </div>
                     <div className="footer-upper-nav">
                         <h3>管理入口</h3>
-                        <a href="" target="_blank" rel="noreferrer">Admin CMS</a>
+                        <a href="https://admin.liuzhaomax.cn" target="_blank" rel="noreferrer">CMS平台</a>
                         <a href="" target="_blank" rel="noreferrer">Monitor</a>
                         <a href="https://mahara.infotech.monash.edu/view/view.php?id=56000" target="_blank" rel="noreferrer">Mahara SM Page</a>
                         <a href="https://mahara.infotech.monash.edu/view/view.php?id=56002" target="_blank" rel="noreferrer">Mahara IM Page</a>
