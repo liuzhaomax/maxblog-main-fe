@@ -40,6 +40,7 @@ const ArticleList = forwardRef((props, ref) => {
         let article
         let data = articleListRes.map(item => {
             article = {
+                id: item.id,
                 href: `${config.beBaseUrl}${URL.INNER.Project}${URL.INNER.ArticleArticle}?articleId=${item.id}`,
                 title: item.title,
                 tags: "",
@@ -82,6 +83,10 @@ const ArticleList = forwardRef((props, ref) => {
         reloadArticleList
     }))
 
+    const onClickListImage = (id) => {
+        window.open(`${URL.INNER.ArticleArticle}?articleId=${id}`, "_blank")
+    }
+
     return (
         <div className="article-list-container">
             <List
@@ -120,6 +125,7 @@ const ArticleList = forwardRef((props, ref) => {
                                 width={250}
                                 alt="cover"
                                 src={item.cover}
+                                onClick={() => onClickListImage(item.id)}
                             />
                         }
                     >
