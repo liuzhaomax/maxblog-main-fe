@@ -5,23 +5,28 @@ import Announcement from "../announcement/Announcement"
 import ArticleCarousel from "./ArticleCarousel"
 import ArticleList from "./ArticleList"
 import { Input, Tag } from "antd"
+import useDebounce from "../../utils/debounce"
 
 const { Search } = Input
 
 function Article() {
     const childRef = useRef()
+    const debouncedHandleTagChangeRef = useRef()
 
     const onSearch = (value, _e, info) => console.log(info?.source, value)
 
     const [selectedTags, setSelectedTags] = React.useState([])
-    const handleChange = (tag, checked) => {
+    const handleTagChange = (tag, checked) => {
         const nextSelectedTags = checked
             ? [...selectedTags, tag]
             : selectedTags.filter((t) => t !== tag)
         setSelectedTags(nextSelectedTags)
-        console.log("You are interested in: ", nextSelectedTags)
         // 发送请求 更新文章列表，子组件中的函数
         childRef.current.reloadArticleListBySelectedTags(nextSelectedTags)
+    }
+    // useDebounce不跟随dom刷新而重置，不会初始化canCall，先触发，后防抖（先触发，后n毫秒之内不能再触发）
+    if (!debouncedHandleTagChangeRef.current) {
+        debouncedHandleTagChangeRef.current = useDebounce(handleTagChange, 500)
     }
 
     const [articleListRes, setArticleListRes] = useState([])
@@ -55,7 +60,7 @@ function Article() {
                                         <Tag.CheckableTag
                                             key={tag}
                                             checked={selectedTags.includes(tag)}
-                                            onChange={(checked) => handleChange(tag, checked)}
+                                            onChange={(checked) => debouncedHandleTagChangeRef.current(tag, checked)}
                                         >
                                             {tag}
                                         </Tag.CheckableTag>
