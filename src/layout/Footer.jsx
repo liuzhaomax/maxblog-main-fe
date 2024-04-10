@@ -4,6 +4,7 @@ import "./Footer.css"
 import logo from "../asset/logo_bottom_color.png"
 import { CONTRIBUTORS, GITHUB } from "../config/constant"
 import { Tooltip } from "antd"
+import ICP from "../asset/footer/ICP.png"
 
 function Footer() {
     useEffect(() => {
@@ -51,10 +52,6 @@ function Footer() {
                 <div id="footer-lower-wrap">
                     <p>
                         此博客系统专门用于分享和转载编程学习相关的文章和示例，与展示个人作品。<br/>
-
-                    </p>
-                    <p>
-                        转载具有原创标记的文章，请注明出处并提供链接。
                     </p>
                     <p>
                         如有洽谈与合作需求，请点击
@@ -62,7 +59,13 @@ function Footer() {
                         跳转至个人GitHub页面，并查看联系方式。
                     </p>
                     <p>
-                        ©2022 LIU Zhao. All rights reserved.
+                        ©2022-2032 LIU Zhao. All rights reserved.
+                        <span id="ICP">
+                            <img src={ICP} alt="ICP"/>
+                            <a href="https://beian.mps.gov.cn/#/query/webSearch" target="\_blank" style={{color: "white",textDecoration:"none"}}>
+                                津ICP备2024011617号
+                            </a>
+                        </span>
                     </p>
                 </div>
             </div>

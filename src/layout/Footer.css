@@ -90,3 +90,32 @@ hr {
     height: 50px;
     border-radius: 50px;
 }
+
+
+/*备案*/
+.Footer #ICP {
+    margin-left: 30px;
+    font-size: 14px;
+}
+
+.Footer #ICP a:link {
+    color: white !important;
+}
+
+.Footer #ICP a:visited {
+    color: white !important;
+}
+
+.Footer #ICP a:hover {
+    color: gainsboro !important;
+}
+
+.Footer #ICP a:active {
+    color: white !important;
+}
+
+.Footer #ICP img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
