@@ -4,11 +4,8 @@ import { Carousel } from "antd"
 import { getArticleList } from "./handlers"
 import config from "../../config/config"
 import { URL } from "../../config/url"
-import { useNavigate } from "react-router-dom"
 
 function ArticleCarousel() {
-    const navigate = useNavigate()
-
     useEffect(() => {
         loadCarouselList()
     }, [])
@@ -36,7 +33,7 @@ function ArticleCarousel() {
     }
 
     const onClickCarouselItem = (id) => {
-        navigate(`${URL.INNER.ArticleArticle}/${id}`)
+        window.open(`${URL.INNER.ArticleArticle}/${id}`, "_blank")
     }
 
     return (
