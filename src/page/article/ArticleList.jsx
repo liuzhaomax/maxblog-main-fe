@@ -30,7 +30,6 @@ const ArticleList = forwardRef((props, ref) => {
         }
         getArticleList(params)
             .then(res => {
-                props.setArticleListRes(res.data.data)
                 mapArticleListRes2Data(res.data.data)
             })
             .catch(err => {
@@ -70,10 +69,8 @@ const ArticleList = forwardRef((props, ref) => {
             tagName: selectedTags.join(",") ? selectedTags.join(",") : "",
             search: searchingStr ? searchingStr : "",
         }
-        console.log(params)
         getArticleList(params)
             .then(res => {
-                props.setArticleListRes(res.data.data)
                 mapArticleListRes2Data(res.data.data)
             })
             .catch(err => {

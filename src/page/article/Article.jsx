@@ -6,6 +6,7 @@ import ArticleCarousel from "./ArticleCarousel"
 import ArticleList from "./ArticleList"
 import { Input, Tag } from "antd"
 import useDebounce from "../../utils/debounce"
+import { getArticleTags } from "./handlers"
 
 const { Search } = Input
 
@@ -37,14 +38,18 @@ function Article() {
         // 监听函数，是为了更新参数
     }, [handleTagChange])
 
-    const [articleListRes, setArticleListRes] = useState([])
-
+    const [tags, setTags] = useState([])
+    useEffect(() => {
+        loadTags()
+    }, [])
     const loadTags = () => {
-        let tags = []
-        for (let i = 0; i < articleListRes.length; i++) {
-            tags = [...new Set([...tags, ...articleListRes[i].tags])]
-        }
-        return tags
+        getArticleTags()
+            .then(res => {
+                setTags(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -55,16 +60,16 @@ function Article() {
                     <Announcement moduleName={ARTICLE.KEY}/>
                 </div>
                 <div className="article-south">
-                    <ArticleList setArticleListRes={setArticleListRes} ref={childRef}/>
+                    <ArticleList ref={childRef}/>
                     <div className="article-tool">
                         <Search placeholder="搜索标题和正文" onSearch={onSearch} enterButton loading={searchLoading} />
                         <h3>#标签</h3>
                         <div className="article-tag-wrap">
                             {
-                                articleListRes.length === 0 ?
+                                tags.length === 0 ?
                                     <></>
                                     :
-                                    loadTags().map(tag => (
+                                    tags.map(tag => (
                                         <Tag.CheckableTag
                                             key={tag}
                                             checked={selectedTags.includes(tag)}
