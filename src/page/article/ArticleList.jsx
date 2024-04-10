@@ -56,7 +56,7 @@ const ArticleList = forwardRef((props, ref) => {
                     tagNameStr += `${item.tags[i]}`
                     break
                 }
-                tagNameStr += `${item.tags[i]} `
+                tagNameStr += `${item.tags[i]}, `
             }
             article.tags = tagNameStr
             return article
