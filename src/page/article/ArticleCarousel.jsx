@@ -33,7 +33,7 @@ function ArticleCarousel() {
     }
 
     const onClickCarouselItem = (id) => {
-        window.open(`${URL.INNER.ArticleArticle}/${id}`, "_blank")
+        window.open(`${URL.INNER.ArticleArticle}?articleId=${id}`, "_blank")
     }
 
     return (
