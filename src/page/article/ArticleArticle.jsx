@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ARTICLE } from "../../config/module"
 import "./ArticleArticle.css"
 import Announcement from "../announcement/Announcement"
-import { getArticleArticle } from "./handlers"
+import { getArticleArticle, patchArticleArticle } from "./handlers"
 import { LikeOutlined, EyeOutlined, ClockCircleOutlined, UserOutlined } from "@ant-design/icons"
 import { Popover } from "antd"
 
@@ -18,6 +18,7 @@ const ArticleArticle = () => {
         getArticleArticle(articleId)
             .then(res => {
                 setArticleRes(res.data.data)
+                setLike(res.data.data.like)
             })
             .catch(err => {
                 console.log(err)
@@ -32,6 +33,21 @@ const ArticleArticle = () => {
         setTimeout(() => {
             setPopoverOpen(false)
         }, 7000)
+    }
+
+    const [like, setLike] = useState(0)
+    const onClickLike = () => {
+        let params = {
+            id: articleRes.id,
+            field: "like",
+        }
+        patchArticleArticle(params)
+            .then(() => {
+                setLike(like+1)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -53,7 +69,9 @@ const ArticleArticle = () => {
                                             color="#338e6c"
                                             open={popoverOpen}
                                         >
-                                            <span className="article-article-meta-item article-article-like"><LikeOutlined/>点赞数：{articleRes.like}</span>
+                                            <span className="article-article-meta-item article-article-like" onClick={onClickLike}>
+                                                <LikeOutlined/>点赞数：{like}
+                                            </span>
                                         </Popover>
                                     </div>
                                     <div>#标签：{articleRes.tags.join(", ")}</div>

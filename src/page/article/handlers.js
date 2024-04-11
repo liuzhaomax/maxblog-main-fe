@@ -16,3 +16,7 @@ export const getArticleTags = () => {
 export const getArticleArticle = (id) => {
     return axios.get(URL.INNER.ArticleArticle + `?articleId=${id}`)
 }
+
+export const patchArticleArticle = (params) => {
+    return axios.patch(URL.INNER.ArticleArticle + `?articleId=${params.id}&field=${params.field}`)
+}
