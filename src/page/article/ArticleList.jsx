@@ -85,7 +85,7 @@ const ArticleList = forwardRef((props, ref) => {
     }))
 
     const onClickListImage = (id) => {
-        window.open(`${URL.INNER.ArticleArticle}?articleId=${id}`, "_blank")
+        window.open(`${ARTICLE.CHILDREN.ARTICLE.FULL_PATH}?articleId=${id}`, "_blank")
     }
 
     return (
