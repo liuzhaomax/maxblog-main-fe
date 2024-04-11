@@ -5,6 +5,7 @@ import { LikeOutlined, EyeOutlined, ClockCircleOutlined } from "@ant-design/icon
 import { getArticleList } from "./handlers"
 import config from "../../config/config"
 import { URL } from "../../config/url"
+import { ARTICLE } from "../../config/module"
 
 const IconText = ({ icon, text }) => (
     <Space>
@@ -41,7 +42,7 @@ const ArticleList = forwardRef((props, ref) => {
         let data = articleListRes.map(item => {
             article = {
                 id: item.id,
-                href: `${config.beBaseUrl}${URL.INNER.Maxblog}${URL.INNER.ArticleArticle}?articleId=${item.id}`,
+                href: `${config.beBaseUrl}${URL.INNER.Maxblog}${ARTICLE.CHILDREN.ARTICLE.FULL_PATH}?articleId=${item.id}`,
                 title: item.title,
                 tags: "",
                 preview: item.content.slice(0, 50) + " ...", // 前50个字符
