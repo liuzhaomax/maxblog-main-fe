@@ -49,6 +49,11 @@
     margin-right: 30px;
 }
 
+.article-article-like:hover {
+    cursor: pointer;
+    color: #338e6c;
+}
+
 .article-article-content {
     margin: 25px 0;
 }

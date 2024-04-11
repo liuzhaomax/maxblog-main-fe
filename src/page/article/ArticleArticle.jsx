@@ -4,6 +4,7 @@ import "./ArticleArticle.css"
 import Announcement from "../announcement/Announcement"
 import { getArticleArticle } from "./handlers"
 import { LikeOutlined, EyeOutlined, ClockCircleOutlined, UserOutlined } from "@ant-design/icons"
+import { Popover } from "antd"
 
 const ArticleArticle = () => {
     const [articleRes, setArticleRes] = useState(null)
@@ -23,6 +24,16 @@ const ArticleArticle = () => {
             })
     }
 
+    useEffect(() => {
+        onPopoverOpenChange()
+    }, [])
+    const [popoverOpen, setPopoverOpen] = useState(true)
+    const onPopoverOpenChange = () => {
+        setTimeout(() => {
+            setPopoverOpen(false)
+        }, 7000)
+    }
+
     return (
         <div id={ARTICLE.CHILDREN.ARTICLE.KEY} className={ARTICLE.CHILDREN.ARTICLE.KEY}>
             <div className="article-article-container">
@@ -36,7 +47,14 @@ const ArticleArticle = () => {
                                         <span className="article-article-meta-item"><UserOutlined />作者：{articleRes.author}</span>
                                         <span className="article-article-meta-item"><ClockCircleOutlined/>更新时间：{articleRes.updatedAt.slice(0, 19)}</span>
                                         <span className="article-article-meta-item"><EyeOutlined/>阅读量：{articleRes.view}</span>
-                                        <span className="article-article-meta-item"><LikeOutlined/>点赞数：{articleRes.like}</span>
+                                        <Popover className="article-article-like-popover"
+                                            placement="rightTop"
+                                            content={<span style={{ color: "white" }}>喜欢就点个赞吧~</span>}
+                                            color="#338e6c"
+                                            open={popoverOpen}
+                                        >
+                                            <span className="article-article-meta-item article-article-like"><LikeOutlined/>点赞数：{articleRes.like}</span>
+                                        </Popover>
                                     </div>
                                     <div>#标签：{articleRes.tags.join(", ")}</div>
                                 </div>
