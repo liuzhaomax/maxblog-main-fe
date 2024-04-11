@@ -6,3 +6,12 @@
 .article-list-container img:hover {
     cursor: pointer;
 }
+
+.article-list-title {
+    font-size: 18px !important;
+}
+
+.article-list-title:hover {
+    cursor: pointer;
+    color: #338e6c;
+}

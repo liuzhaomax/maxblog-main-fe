@@ -42,7 +42,6 @@ const ArticleList = forwardRef((props, ref) => {
         let data = articleListRes.map(item => {
             article = {
                 id: item.id,
-                href: `${config.beBaseUrl}${URL.INNER.Maxblog}${ARTICLE.CHILDREN.ARTICLE.FULL_PATH}?articleId=${item.id}`,
                 title: item.title,
                 tags: "",
                 preview: item.content.slice(0, 50) + " ...", // 前50个字符
@@ -85,6 +84,10 @@ const ArticleList = forwardRef((props, ref) => {
     }))
 
     const onClickListImage = (id) => {
+        window.open(`${ARTICLE.CHILDREN.ARTICLE.FULL_PATH}?articleId=${id}`, "_blank")
+    }
+
+    const onClickListTitle = (id) => {
         window.open(`${ARTICLE.CHILDREN.ARTICLE.FULL_PATH}?articleId=${id}`, "_blank")
     }
 
@@ -131,7 +134,7 @@ const ArticleList = forwardRef((props, ref) => {
                         }
                     >
                         <List.Item.Meta
-                            title={<a href={item.href} target="_blank" rel="noreferrer">{item.title}</a>}
+                            title={<div className="article-list-title" onClick={() => onClickListTitle(item.id)} >{item.title}</div>}
                             description={item.tags}
                         />
                         {item.preview}
