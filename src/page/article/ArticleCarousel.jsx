@@ -22,7 +22,7 @@ function ArticleCarousel() {
                 let list = res.data.data.map(item => {
                     return {
                         id: item.id,
-                        cover: `${config.beBaseUrl}${URL.INNER.Static}${URL.INNER.Project}/${item.id}/${item.cover}`,
+                        cover: `${config.beBaseUrl}${URL.INNER.Static}${URL.INNER.Maxblog}${URL.INNER.Article}/${item.id}/${item.cover}`,
                     }
                 })
                 setArticleListCarouselRes(list)

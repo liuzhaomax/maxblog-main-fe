@@ -2,6 +2,7 @@ export const URL = {
     INNER: {
         Static: "/www",
         Maxblog: "/maxblog",
+        Article: "/article",
         ArticleList: "/article/list",
         ArticleTags: "/article/tags",
         ArticleArticle: "/article/article",

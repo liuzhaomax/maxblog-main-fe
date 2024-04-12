@@ -48,7 +48,7 @@ const ArticleList = forwardRef((props, ref) => {
                 view: item.view,
                 like: item.like,
                 updatedAt: item.updatedAt.slice(0, 19), // 2024-10-05 15:12:11
-                cover: `${config.beBaseUrl}${URL.INNER.Static}${URL.INNER.Maxblog}/${item.id}/${item.cover}`, // /www/maxblog/JC23dJhf3bMNZZZCYLjGBk/golang.png
+                cover: `${config.beBaseUrl}${URL.INNER.Static}${URL.INNER.Maxblog}${URL.INNER.Article}/${item.id}/${item.cover}`, // /www/maxblog/JC23dJhf3bMNZZZCYLjGBk/golang.png
             }
             let tagNameStr = ""
             for (let i = 0; i < item.tags.length; i++) {
