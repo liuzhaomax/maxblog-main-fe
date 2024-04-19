@@ -7,6 +7,7 @@ export const URL = {
         ArticleTags: "/article/tags",
         ArticleArticle: "/article/article",
         ArticleTag: "/article/tag",
+        StatsArticleMain: "/stats/article/main",
         Demo: "/demo",
     },
     OUTER: {

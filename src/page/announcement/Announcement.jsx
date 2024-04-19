@@ -1,14 +1,28 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import "./Announcement.css"
 import "../demo/DemoNorth.css"
 import { ARTICLE, DEMO } from "../../config/module"
 import imgPortrait from "../../asset/announcement/portrait.png"
 import imgWechat from "../../asset/announcement/wechat.png"
+import { getStatsArticleMain } from "../article/handlers"
 
 
 const Announcement = (props) => {
-    const demoState = [23,1000,500]
     const moduleName = props.moduleName
+
+    const [statsArticleMain, setStatsArticleMain] = useState(null)
+    useEffect(() => {
+        loadStatsArticleMain()
+    }, [])
+    const loadStatsArticleMain = () => {
+        getStatsArticleMain()
+            .then(res => {
+                setStatsArticleMain(res.data.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     return(
         <div id="ANNOUNCEMENT" className="ANNOUNCEMENT">
@@ -25,7 +39,7 @@ const Announcement = (props) => {
             <div className="announcement-data-border">
                 <div className="announcement-data-wrap">
                     <div className="announcement-data">
-                        {demoState[0]}
+                        {statsArticleMain?statsArticleMain.quantity:0}
                     </div>
                     <div className="announcement-data-title">
                         {moduleName === ARTICLE.KEY ? ARTICLE.NAME : DEMO.NAME}
@@ -33,7 +47,7 @@ const Announcement = (props) => {
                 </div>
                 <div className="announcement-data-wrap">
                     <div className="announcement-data">
-                        {demoState[1]}
+                        {statsArticleMain?statsArticleMain.view:0}
                     </div>
                     <div className="announcement-data-title">
                         访问
@@ -41,7 +55,7 @@ const Announcement = (props) => {
                 </div>
                 <div className="announcement-data-wrap">
                     <div className="announcement-data">
-                        {demoState[2]}
+                        {statsArticleMain?statsArticleMain.like:0}
                     </div>
                     <div className="announcement-data-title">
                         点赞
