@@ -43,7 +43,7 @@ function Footer() {
                     </div>
                     <div className="footer-upper-nav">
                         <h3>管理入口</h3>
-                        <a href="https://admin.liuzhaomax.cn" target="_blank" rel="noreferrer">CMS平台</a>
+                        <a href="http://106.15.94.179:9602" target="_blank" rel="noreferrer">CMS平台</a>
                         <a href="" target="_blank" rel="noreferrer">Monitor</a>
                         <a href="https://mahara.infotech.monash.edu/view/view.php?id=56000" target="_blank" rel="noreferrer">Mahara SM Page</a>
                         <a href="https://mahara.infotech.monash.edu/view/view.php?id=56002" target="_blank" rel="noreferrer">Mahara IM Page</a>
