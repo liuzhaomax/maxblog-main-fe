@@ -48,7 +48,7 @@ function Footer() {
                     <div className="footer-upper-nav">
                         <h3>管理入口</h3>
                         <div className="footer-upper-nav-item-wrap">
-                            <a href="http://106.15.94.179:9602" target="_blank" rel="noreferrer">CMS平台</a>
+                            <a href="https://admin.liuzhaomax.cn" target="_blank" rel="noreferrer">CMS平台</a>
                             <a href="https://jenkins.liuzhaomax.cn" target="_blank" rel="noreferrer">Jenkins</a>
                             <a href="https://vault.liuzhaomax.cn" target="_blank" rel="noreferrer">Vault</a>
                             <a href="https://consul.liuzhaomax.cn" target="_blank" rel="noreferrer">Consul</a>
