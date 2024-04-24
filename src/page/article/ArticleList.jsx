@@ -46,7 +46,7 @@ const ArticleList = forwardRef((props, ref) => {
                 id: item.id,
                 title: item.title,
                 tags: "",
-                preview: mdParser.render(item.content.slice(0, 150) + " ..."), // 前150个字符
+                preview: mdParser.render(item.content.slice(0, 100) + " ..."), // 前100个字符
                 view: item.view,
                 like: item.like,
                 updatedAt: item.updatedAt.slice(0, 19), // 2024-10-05 15:12:11
