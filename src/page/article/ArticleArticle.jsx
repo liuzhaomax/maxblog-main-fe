@@ -5,6 +5,7 @@ import Announcement from "../announcement/Announcement"
 import { getArticleArticle, patchArticleArticle } from "./handlers"
 import { LikeOutlined, EyeOutlined, ClockCircleOutlined, UserOutlined } from "@ant-design/icons"
 import { Popover } from "antd"
+import ReactMarkdown from "react-markdown"
 
 const ArticleArticle = () => {
     const [articleRes, setArticleRes] = useState(null)
@@ -76,7 +77,7 @@ const ArticleArticle = () => {
                                     </div>
                                     <div>#标签：{articleRes.tags.join(", ")}</div>
                                 </div>
-                                <div className="article-article-content">{articleRes.content}</div>
+                                <ReactMarkdown className="article-article-content">{articleRes.content}</ReactMarkdown>
                                 {
                                     articleRes.reference ?
                                         <div>
