@@ -26,12 +26,6 @@ app.engine("html", ejs.renderFile)
         res.render("error")
     })
 
-const router  = express.Router()
-
-router.get("/", (req, res, next) => {
-    res.render("./build/index.html")
-})
-
 const httpRequestDurationMicroseconds = new promClient.Histogram({
     name: "http_request_duration_seconds",
     help: "Duration of HTTP requests in seconds",
@@ -48,12 +42,18 @@ const promMw = (req, res, next) => {
     })
     next()
 }
+
+app.use(promMw)
+
+const router  = express.Router()
+
+router.get("/", (req, res, next) => {
+    res.render("./build/index.html")
+})
 router.get("/metrics", (req, res) => {
     res.set("Content-Type", promClient.register.contentType)
     res.end(promClient.register.metrics())
 })
-
-app.use(promMw)
 
 app.use("/", router)
 
