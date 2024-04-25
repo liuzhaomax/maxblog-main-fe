@@ -52,7 +52,7 @@ router.get("/", (req, res, next) => {
 })
 router.get("/metrics", (req, res) => {
     res.set("Content-Type", promClient.register.contentType)
-    res.end(promClient.register.metrics())
+    res.send(promClient.register.metrics())
 })
 
 const consulHost = "172.16.96.97"
@@ -86,7 +86,7 @@ consul.agent.service.register({
 })
 
 router.get("/health", (req, res, next) => {
-    res.end("ok")
+    res.send("ok")
 })
 
 app.use("/", router)
