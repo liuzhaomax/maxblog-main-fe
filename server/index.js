@@ -72,6 +72,7 @@ consul.agent.service.register({
     name: serviceName,
     address: serviceHost,
     port: servicePort,
+    tags: [serviceName, "http", "nodejs"],
     check: {
         http: `http://${serviceHost}:${servicePort}${healthCheckEndpoint}`, // 健康检查的 URL
         interval: "10s", // 健康检查的间隔时间
