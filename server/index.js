@@ -38,7 +38,6 @@ const httpRequestDurationMicroseconds = new promClient.Histogram({
     labelNames: ["method", "route", "code"],
     buckets: [0.1, 0.5, 1, 1.5, 2, 3, 5, 10],
 })
-
 const promMw = (req, res, next) => {
     const start = Date.now()
     res.on("finish", () => {
@@ -49,7 +48,6 @@ const promMw = (req, res, next) => {
     })
     next()
 }
-
 router.get("/metrics", (req, res) => {
     res.set("Content-Type", promClient.register.contentType)
     res.end(promClient.register.metrics())
@@ -87,7 +85,7 @@ consul.agent.service.register({
     }
 })
 
-app.listen(9601, (req, res) => {
-    console.log("Server fe的be running on 9601.")
+app.listen(servicePort, (req, res) => {
+    console.log(`Server fe的be running on ${servicePort}.`)
     debug()
 })
