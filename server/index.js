@@ -6,6 +6,7 @@ const favicon = require("serve-favicon")
 const logger = require("morgan")
 const debug = require("debug")("my-application")
 const promClient = require("prom-client")
+const Consul = require("consul")
 
 const app = express()
 app.disable("x-powered-by")
@@ -57,6 +58,19 @@ router.get("/metrics", (req, res) => {
 app.use(promMw)
 
 app.use("/", router)
+
+const consul = new Consul({
+    host: "172.16.96.98",
+    port: 8500,
+})
+const serviceName = "maxblog-main-fe"
+const servicePort = 9601
+consul.agent.service.register({
+    name: serviceName,
+    port: servicePort,
+}, (err) => {
+    console.log(err)
+})
 
 app.listen(9601, (req, res) => {
     console.log("Server fe的be running on 9601.")
