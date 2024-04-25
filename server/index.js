@@ -15,7 +15,13 @@ app.engine("html", ejs.renderFile)
     .set("views", path.resolve(__dirname, "./build"))
     .set("view engine", "html")
     .use(favicon(path.resolve(__dirname, "./build/favicon.ico")))
-    .use(history({index: "/", verbose: false}))
+    .use(history({
+        index: "/",
+        verbose: false,
+        // connect-history-api-fallback中间件会去SPA找路由，没有的话会用“/”替代，注意排除动态路由，
+        // 如果有其他更多的复杂路由，可以使用/api 开头 或 /^\/api\/.*$/，不能使用通配符
+        exclude: ["/health", "/metrics"],
+    }))
     .use(express.static(path.resolve(__dirname, "./build")))
     // .use(logger("dev"))
     .use(logger(":method :status - :remote-addr - :date[iso] - :url - :response-time ms - :res[content-length]"))
