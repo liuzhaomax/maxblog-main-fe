@@ -70,6 +70,7 @@ const healthCheckEndpoint = "/health"
 
 consul.agent.service.register({
     name: serviceName,
+    address: serviceHost,
     port: servicePort,
     check: {
         http: `http://${serviceHost}:${servicePort}${healthCheckEndpoint}`, // 健康检查的 URL
