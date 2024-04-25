@@ -18,9 +18,11 @@ app.engine("html", ejs.renderFile)
     .use(history({
         index: "/",
         verbose: false,
-        // connect-history-api-fallback中间件会去SPA找路由，没有的话会用“/”替代，注意排除动态路由，
-        // 如果有其他更多的复杂路由，可以使用/api 开头 或 /^\/api\/.*$/，不能使用通配符
-        exclude: ["/health", "/metrics"],
+        // connect-history-api-fallback中间件会去SPA找路由，没有的话会用“/”替代
+        rewrites: [
+            { from: /^\/health$/, to: "/health" }, // 将 /health 请求重定向到自身，避免重定向
+            { from: /^\/metrics$/, to: "/metrics" },
+        ],
     }))
     .use(express.static(path.resolve(__dirname, "./build")))
     // .use(logger("dev"))
