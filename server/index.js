@@ -59,8 +59,13 @@ router.get("/", (req, res, next) => {
     res.render("./build/index.html")
 })
 router.get("/metrics", (req, res) => {
-    res.set("Content-Type", promClient.register.contentType)
-    res.end(promClient.register.metrics())
+    promClient.register.metrics().then(metrics => {
+        res.set("Content-Type", promClient.register.contentType)
+        res.end(metrics)
+    }).catch(error => {
+        console.error("Error sending metrics:", error)
+        res.status(500).send("Internal Server Error")
+    })
 })
 
 const consulHost = "172.16.96.97"
