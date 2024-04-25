@@ -65,11 +65,23 @@ const consul = new Consul({
 })
 const serviceName = "maxblog-main-fe"
 const servicePort = 9601
+const healthCheckEndpoint = "/health"
+
 consul.agent.service.register({
     name: serviceName,
     port: servicePort,
+    check: {
+        http: `http://172.16.96.98:${servicePort}${healthCheckEndpoint}`, // 健康检查的 URL
+        interval: "10s", // 健康检查的间隔时间
+        timeout: "5s",   // 健康检查的超时时间
+        deregister_critical_service_after: "1m" // 在服务不健康时，多久后将其从 Consul 注销
+    }
 }, (err) => {
-    console.log(err)
+    if (err) {
+        console.error("Failed to register with Consul:", err)
+    } else {
+        console.log("Registered with Consul")
+    }
 })
 
 app.listen(9601, (req, res) => {
