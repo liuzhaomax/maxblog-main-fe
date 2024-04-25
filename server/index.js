@@ -5,6 +5,7 @@ const history = require("connect-history-api-fallback")
 const favicon = require("serve-favicon")
 const logger = require("morgan")
 const debug = require("debug")("my-application")
+const promClient = require("prom-client")
 
 const app = express()
 app.disable("x-powered-by")
@@ -15,7 +16,7 @@ app.engine("html", ejs.renderFile)
     .use(favicon(path.resolve(__dirname, "./build/favicon.ico")))
     .use(history({index: "/", verbose: false}))
     .use(express.static(path.resolve(__dirname, "./build")))
-    // .use(logger('dev'))
+    // .use(logger("dev"))
     .use(logger(":method :status - :remote-addr - :date[iso] - :url - :response-time ms - :res[content-length]"))
     .use((err, req, res, next) => {
         res.locals.message = err.message
@@ -29,6 +30,31 @@ const router  = express.Router()
 router.get("/", (req, res, next) => {
     res.render("./build/index.html")
 })
+
+const httpRequestDurationMicroseconds = new promClient.Histogram({
+    name: "http_request_duration_seconds",
+    help: "Duration of HTTP requests in seconds",
+    labelNames: ["method", "route", "code"],
+    buckets: [0.1, 0.5, 1, 1.5, 2, 3, 5, 10],
+})
+
+const promMw = (req, res, next) => {
+    const start = Date.now()
+    res.on("finish", () => {
+        const duration = Date.now() - start
+        httpRequestDurationMicroseconds
+            .labels(req.method, req.route.path, res.statusCode)
+            .observe(duration / 1000)
+    })
+    next()
+}
+
+router.get("/metrics", (req, res) => {
+    res.set("Content-Type", promClient.register.contentType)
+    res.end(promClient.register.metrics())
+})
+
+app.use(promMw)
 
 app.use("/", router)
 
