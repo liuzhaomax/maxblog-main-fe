@@ -55,8 +55,6 @@ router.get("/metrics", (req, res) => {
     res.end(promClient.register.metrics())
 })
 
-app.use("/", router)
-
 const consulHost = "172.16.96.97"
 const consulPort = 8500
 const consul = new Consul({
@@ -86,6 +84,12 @@ consul.agent.service.register({
         console.log("Registered with Consul")
     }
 })
+
+router.get("/health", (req, res, next) => {
+    res.end("ok")
+})
+
+app.use("/", router)
 
 app.listen(servicePort, (req, res) => {
     console.log(`Server fe的be running on ${servicePort}.`)
