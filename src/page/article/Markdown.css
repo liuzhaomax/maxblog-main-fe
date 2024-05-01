@@ -1,0 +1,42 @@
+.article-article-content {
+    margin: 25px 0;
+}
+
+.article-article-reference-content, .article-article-link-content {
+    margin-left: 30px;
+}
+
+.article-article-content table {
+    width: max-content;
+    max-width: 100%;
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 20px;
+    border-color: #333;
+}
+
+.article-article-content tbody,
+.article-article-content td,
+.article-article-content tfoot,
+.article-article-content th,
+.article-article-content thead,
+.article-article-content tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px 10px;
+}
+
+.article-article-content th {
+    background-color: #338e6c;
+    color: white;
+    text-align: center !important;
+}
+
+.article-article-content blockquote {
+    background-color: #338e6c;
+    color: white;
+    padding: 5px 20px;
+}

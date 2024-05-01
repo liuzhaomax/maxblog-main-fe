@@ -54,14 +54,6 @@
     color: #338e6c;
 }
 
-.article-article-content {
-    margin: 25px 0;
-}
-
 .article-article-reference-title, .article-article-link-title {
     font-weight: bold;
-}
-
-.article-article-reference-content, .article-article-link-content {
-    margin-left: 30px;
 }
