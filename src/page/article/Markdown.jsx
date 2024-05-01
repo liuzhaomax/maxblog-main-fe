@@ -7,7 +7,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 const Code = ({ inline, className, children, ...props }) => {
-    if (!inline) {
+    if (!inline && className && className.startsWith("language-")) {
         const match = /language-(\w+)/.exec(className || "")
         const content = String(children).replace(/\n$/, "")
         return (
@@ -21,7 +21,7 @@ const Code = ({ inline, className, children, ...props }) => {
             </SyntaxHighlighter>
         )
     }
-    return <code className={className} {...props}>{children}</code>
+    return <span className="article-article-content-backtick" {...props}>{children}</span>
 }
 
 const Table = ({...props}) => <table {...props} />
