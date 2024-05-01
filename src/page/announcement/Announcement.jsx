@@ -5,10 +5,12 @@ import { ARTICLE, DEMO } from "../../config/module"
 import imgPortrait from "../../asset/announcement/portrait.png"
 import imgWechat from "../../asset/announcement/wechat.png"
 import { getStatsArticleMain } from "../article/handlers"
-
+import { useDispatch } from "react-redux"
+import { setArticleQuantity } from "../../state/reducers/stats"
 
 const Announcement = (props) => {
     const moduleName = props.moduleName
+    const dispatch = useDispatch()
 
     const [statsArticleMain, setStatsArticleMain] = useState(null)
     useEffect(() => {
@@ -18,6 +20,7 @@ const Announcement = (props) => {
         getStatsArticleMain()
             .then(res => {
                 setStatsArticleMain(res.data.data)
+                dispatch(setArticleQuantity(res.data.data.quantity))
             })
             .catch(err => {
                 console.log(err)

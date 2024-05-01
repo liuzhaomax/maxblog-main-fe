@@ -1,12 +1,13 @@
-import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react"
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import "./ArticleList.css"
 import { List, Space } from "antd"
-import { LikeOutlined, EyeOutlined, ClockCircleOutlined } from "@ant-design/icons"
+import { ClockCircleOutlined, EyeOutlined, LikeOutlined } from "@ant-design/icons"
 import { getArticleList } from "./handlers"
 import config from "../../config/config"
 import { URL } from "../../config/url"
 import { ARTICLE } from "../../config/module"
 import MarkdownIt from "markdown-it"
+import { useSelector } from "react-redux"
 
 const IconText = ({ icon, text }) => (
     <Space>
@@ -16,14 +17,21 @@ const IconText = ({ icon, text }) => (
 )
 
 const ArticleList = forwardRef((props, ref) => {
-    const [pageNo, setPageNo] = useState(1)
-    const [pageSize, setPageSize] = useState(5)
-    const [data, setData] = useState([]) // list data
+    const stats = useSelector(state => state.stats)
+
+    const queryString = window.location.search
+    const params = new URLSearchParams(queryString)
+    const pageNoParam = params.get("pageNo") ? params.get("pageNo") : 1
+    const pageSizeParam = params.get("pageSize") ? params.get("pageSize") : 5
+    const [pageNo, setPageNo] = useState(pageNoParam)
+    const [pageSize, setPageSize] = useState(pageSizeParam)
+    const [articleList, setArticleList] = useState([]) // list data
 
     useEffect(() => {
         loadArticleList()
-    }, [])
+    }, [stats, pageNo, pageSize])
     const loadArticleList = () => {
+        setArticleList([]) // 让填充的占位数据消失
         let params = {
             pageNo: pageNo,
             pageSize: pageSize,
@@ -32,7 +40,8 @@ const ArticleList = forwardRef((props, ref) => {
         }
         getArticleList(params)
             .then(res => {
-                mapArticleListRes2Data(res.data.data)
+                let data = mapArticleListRes2Data(res.data.data)
+                extendArticleList(data)
             })
             .catch(err => {
                 console.log(err)
@@ -41,7 +50,7 @@ const ArticleList = forwardRef((props, ref) => {
     const mdParser = new MarkdownIt({ html: true })
     const mapArticleListRes2Data = articleListRes => {
         let article
-        let data = articleListRes.map(item => {
+        return articleListRes.map(item => {
             article = {
                 id: item.id,
                 title: item.title,
@@ -63,8 +72,24 @@ const ArticleList = forwardRef((props, ref) => {
             article.tags = tagNameStr
             return article
         })
-        setData(data)
     }
+    // 获取文章数量，以便补充数据数组，从而让pagination有很多页
+    const extendArticleList = (articleList) => {
+        let data = []
+        if (stats) {
+            for (let i = 0; i < Math.ceil(stats.articleQuantity / pageSize); i++) {
+                if (pageNo - 1 === i) {
+                    data = [...data, ...articleList]
+                } else {
+                    for (let j = 0; j < pageSize; j++) {
+                        data.push({id: j+""})
+                    }
+                }
+            }
+        }
+        setArticleList(data)
+    }
+    // 重新加载文章列表，用于tag和search功能
     const reloadArticleList = (selectedTags, searchingStr) => {
         let params = {
             pageNo: pageNo,
@@ -74,7 +99,8 @@ const ArticleList = forwardRef((props, ref) => {
         }
         getArticleList(params)
             .then(res => {
-                mapArticleListRes2Data(res.data.data)
+                let data = mapArticleListRes2Data(res.data.data)
+                setArticleList(data)
             })
             .catch(err => {
                 console.log(err)
@@ -118,7 +144,7 @@ const ArticleList = forwardRef((props, ref) => {
                         page: "页"
                     },
                 }}
-                dataSource={data}
+                dataSource={articleList}
                 renderItem={(item) => (
                     <List.Item
                         key={item.title}
