@@ -100,7 +100,11 @@ const ArticleList = forwardRef((props, ref) => {
         getArticleList(params)
             .then(res => {
                 let data = mapArticleListRes2Data(res.data.data)
-                setArticleList(data)
+                if (selectedTags.length || searchingStr.length) {
+                    setArticleList(data)
+                } else {
+                    extendArticleList(data)
+                }
             })
             .catch(err => {
                 console.log(err)
