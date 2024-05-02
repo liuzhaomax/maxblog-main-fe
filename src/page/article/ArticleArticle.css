@@ -57,3 +57,7 @@
 .article-article-reference-title, .article-article-link-title {
     font-weight: bold;
 }
+
+.article-article-west img {
+    width: 100%;
+}
