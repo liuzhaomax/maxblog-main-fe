@@ -50,6 +50,8 @@ function Footer() {
                         <div className="footer-upper-nav-item-wrap">
                             <a href="https://admin.liuzhaomax.cn" target="_blank" rel="noreferrer">CMS平台</a>
                             <a href="https://jenkins.liuzhaomax.cn" target="_blank" rel="noreferrer">Jenkins</a>
+                            <a href="https://sonarqube.liuzhaomax.cn" target="_blank" rel="noreferrer">SonarQube</a>
+                            <a href="https://harbor.liuzhaomax.cn" target="_blank" rel="noreferrer">Harbor</a>
                             <a href="https://vault.liuzhaomax.cn" target="_blank" rel="noreferrer">Vault</a>
                             <a href="https://consul.liuzhaomax.cn" target="_blank" rel="noreferrer">Consul</a>
                             <a href="https://prometheus.liuzhaomax.cn" target="_blank" rel="noreferrer">Prometheus</a>
@@ -57,6 +59,7 @@ function Footer() {
                             <a href="https://kibana.liuzhaomax.cn" target="_blank" rel="noreferrer">Kibana</a>
                             <a href="https://jaeger.liuzhaomax.cn" target="_blank" rel="noreferrer">Jaeger</a>
                             <a href="http://106.15.94.179:9877" target="_blank" rel="noreferrer">RocketMQ</a>
+                            <a href="https://sentinel.liuzhaomax.cn" target="_blank" rel="noreferrer">Sentinel</a>
                         </div>
                     </div>
                 </div>
