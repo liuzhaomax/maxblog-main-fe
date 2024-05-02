@@ -60,7 +60,7 @@ const ArticleArticle = () => {
                             <>
                                 <h1>{articleRes.title}</h1>
                                 <div className="article-article-meta">
-                                    <div>
+                                    <div className="article-article-meta-wrap">
                                         <span className="article-article-meta-item"><UserOutlined />作者：{articleRes.author}</span>
                                         <span className="article-article-meta-item"><ClockCircleOutlined/>更新时间：{articleRes.updatedAt.slice(0, 19)}</span>
                                         <span className="article-article-meta-item"><EyeOutlined/>阅读量：{articleRes.view}</span>
@@ -75,7 +75,7 @@ const ArticleArticle = () => {
                                             </span>
                                         </Popover>
                                     </div>
-                                    <div>#标签：{articleRes.tags.join(", ")}</div>
+                                    <div className="article-article-meta-wrap">#标签：{articleRes.tags.join(", ")}</div>
                                 </div>
                                 <Markdown articleRes={articleRes}/>
                                 {

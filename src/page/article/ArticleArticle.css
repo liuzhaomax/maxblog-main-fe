@@ -35,10 +35,14 @@
 }
 
 .article-article-meta {
-    width: 100%;
+    width: calc(100% - 10px);
     padding-left: 10px;
     background-color: #EEE;
     border-radius: 6px;
+}
+
+.article-article-meta-wrap {
+    width: calc(100% - 10px);
 }
 
 .article-article-meta span {
