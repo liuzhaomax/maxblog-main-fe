@@ -65,3 +65,7 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.article-tag-wrap span {
+    margin-bottom: 10px;
+}
