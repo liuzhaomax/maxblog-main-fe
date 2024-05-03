@@ -10,9 +10,9 @@ function HomeProjIntro () {
                 sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" />
             <div className="home-proj-intro-content">
                 <Card className="home-proj-intro-card">
-                    <p>Card content</p>
-                    <p>Card content</p>
-                    <p>Card content</p>
+                    <p>go-maxms</p>
+                    <p>golang后端web脚手架</p>
+                    <p>敬请期待</p>
                 </Card>
                 <Button type="primary" className="home-proj-intro-button">详情</Button>
             </div>
