@@ -8,9 +8,7 @@ import DemoCard from "./DemoCard"
 import { getDemo } from "./handlers"
 import * as ReactDOM from "react-dom/client"
 
-
-function Demo() {
-
+const Demo = () => {
     useEffect(() => {
         (async () => {
             await getDemo()
