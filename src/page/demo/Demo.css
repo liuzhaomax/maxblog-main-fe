@@ -43,7 +43,8 @@
     min-width: 400px;
     height: 530px;
     width: 100%;
-    background-color: #52c41a;
+    background: url("../../asset/demo/jenkins.png") no-repeat;
+    background-size: contain;
 }
 
 .demo-card-wrap {

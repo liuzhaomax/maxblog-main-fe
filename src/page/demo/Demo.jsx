@@ -35,7 +35,6 @@ const Demo = () => {
                 <div className="demo-north">
                     <Announcement/>
                     <div className="demo-north-picture">
-                        tupian
                     </div>
                 </div>
                 <div className="demo-south">
